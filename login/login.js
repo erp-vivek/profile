@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const parsedUser = JSON.parse(user);
             if (parsedUser.password === password) {
                 localStorage.setItem("user", JSON.stringify(parsedUser));
-                window.location.href = "https://google.com";
+                window.location.href = "https://erp-vivek.github.io/profile/";
             } else {
                 alert("Incorrect password");
             }
