@@ -1,30 +1,20 @@
-// Predefined staff password
-const staffPassword = "vivek.ent.123"; // Replace with your actual password
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-// Form submission handler
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
-    const enteredPassword = document.getElementById("password").value;
+    const password = document.getElementById("password").value;
 
-    if (enteredPassword === staffPassword) {
-        // Success Alert
-        Swal.fire({
-            title: 'Access Granted!',
-            text: 'Redirecting to the attendance page...',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2000
-        }).then(() => {
-            // Redirect to attendance page
-            window.location.href = "../attendence2025.html"; // Replace with your actual attendance page URL
-        });
+    // Send the password to your Replit server
+    const response = await fetch("https://e98698cf-e41b-4e75-a52c-4a140dffbf4e-00-2qukwshg67uyn.sisko.replit.dev/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: password }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+        alert(result.message);
+        window.location.href = "attendance.html"; // Redirect to another page
     } else {
-        // Error Alert
-        Swal.fire({
-            title: 'Access Denied!',
-            text: 'Incorrect password. Please try again.',
-            icon: 'error',
-            confirmButtonText: 'Retry'
-        });
+        alert(result.message);
     }
 });
