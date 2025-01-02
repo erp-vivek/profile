@@ -13,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const result = await response.json();
     if (result.success) {
         alert(result.message);
-        window.location.href = "attendance.html"; // Redirect to another page
+        window.location.href = "https://erp-vivek.github.io/profile/attendence2025.html"; // Redirect to another page
     } else {
         alert(result.message);
     }
